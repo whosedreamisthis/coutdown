@@ -19,29 +19,35 @@ const second = 1000;
 const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
+let intervalId;
+
 function updateDOM() {
-  const now = new Date().getTime();
-  const distance = countdownValue - now;
-  console.log("distance", distance);
+  intervalId = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownValue - now;
+    console.log("distance", distance);
 
-  const days = Math.floor(distance / day);
-  const hours = Math.floor((distance % day) / hour);
-  const minutes = Math.floor((distance % hour) / minute);
-  const seconds = Math.floor((distance % minute) / second);
+    const days = Math.floor(distance / day);
+    const hours = Math.floor((distance % day) / hour);
+    const minutes = Math.floor((distance % hour) / minute);
+    const seconds = Math.floor((distance % minute) / second);
 
-  // populate count
-  countdownElTitle.textContent = `${countdownTitle}`;
-  timeElements[0].textContent = `${days}`;
-  timeElements[1].textContent = `${hours}`;
+    // populate count
+    countdownElTitle.textContent = `${countdownTitle}`;
+    timeElements[0].textContent = `${days}`;
+    timeElements[1].textContent = `${hours}`;
 
-  timeElements[2].textContent = `${minutes}`;
+    timeElements[2].textContent = `${minutes}`;
 
-  timeElements[3].textContent = `${seconds}`;
+    timeElements[3].textContent = `${seconds}`;
 
-  console.log(days, hours, minutes, seconds);
-  inputContainer.hidden = true;
-  countdownEl.hidden = false;
+    console.log(days, hours, minutes, seconds);
+    inputContainer.hidden = true;
+    countdownEl.hidden = false;
+  }, second);
 }
+
+//intervalId = setInterval(updateDOM, second);
 // Take Values from form input
 function updateCountdown(e) {
   console.log(e.target, e.target[0], e.target[1]);
