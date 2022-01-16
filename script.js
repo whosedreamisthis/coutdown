@@ -4,7 +4,7 @@ const dateEl = document.querySelector("#date-picker");
 
 const countdownEl = document.querySelector("#countdown");
 const countdownElTitle = document.querySelector("#countdown-title");
-const countdownBtn = document.querySelector("#complete-button");
+const countdownBtn = document.querySelector("#countdown-button");
 const timeElements = document.querySelectorAll("span");
 
 // set date input min with today's date
@@ -47,7 +47,8 @@ function updateDOM() {
   }, second);
 }
 
-//intervalId = setInterval(updateDOM, second);
+//intervalId = setInterval(updat
+
 // Take Values from form input
 function updateCountdown(e) {
   console.log(e.target, e.target[0], e.target[1]);
@@ -61,5 +62,15 @@ function updateCountdown(e) {
   console.log("countdownValue:", countdownValue);
   updateDOM();
 }
+// reset all values
+function reset() {
+  console.log("yeah baby");
+  inputContainer.hidden = false;
+  countdownEl.hidden = true;
+  countdownTitle = "";
+  countdownDate = "";
+  clearInterval(intervalId);
+}
 //event listeners
 countdownForm.addEventListener("submit", updateCountdown);
+countdownBtn.addEventListener("click", reset);
